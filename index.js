@@ -21,10 +21,17 @@ app.use(bodyParser.json());
 // we can find the status chnage in changelog.items
 app.post('/jira-webhook', (req, res) => {
   // Log the entire request body to the console
-  console.log('Webhook received:', JSON.stringify(req.body, null, 2));
+  try {
+    console.log('got hiy')
+    console.log('Webhook received:', JSON.stringify(req.body, null, 2));
 
-  // Send a response back to Jira to acknowledge receipt
-  res.status(200).send('Webhook received');
+    // Send a response back to Jira to acknowledge receipt
+    res.status(200).send('Webhook received');
+
+  } catch (error) {
+    console.error('Error processing webhook:', error);
+    res.status(500).send('Error processing webhook');
+  }
 });
 
 app.post('/update-jira-status', async (req, res) => {
