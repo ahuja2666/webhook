@@ -117,6 +117,7 @@ app.post('/add-comment', async (req, res) => {
 });
 
 app.get("/", (req, res) => {
+  console.log("server is up")
   res.send("server is up")
 })
 
